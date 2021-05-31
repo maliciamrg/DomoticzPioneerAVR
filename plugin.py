@@ -19,6 +19,7 @@ class BasePlugin:
 
     nextConnect = 3
     oustandingPings = 0
+    VOLUMESTEP =2
 
     UNITS = {
         'power': 1,
@@ -179,8 +180,22 @@ class BasePlugin:
             if (action == "On"):
                 self.PioneerConn.Send(Message='MF\r', Delay=0)
             elif (action == "Set"):
-                self.volume_level = str(round((int(Level)*185)/100)).rjust(3,'0')
-                self.PioneerConn.Send(Message=self.volume_level+'VL\r', Delay=0)
+                level = int(str(Level))
+                delta = level - self.volume_level
+                Domoticz.Debug("delta: "+str(delta))
+                for i in range(0, abs(delta), self.VOLUMESTEP):
+                    if delta < 0:
+                        self.volume_level -= self.VOLUMESTEP
+                        self.PioneerConn.Send(Message='VD\r')
+                        Domoticz.Debug("VD")
+                    elif delta > 0:
+                        self.volume_level += self.VOLUMESTEP
+                        self.PioneerConn.Send(Message='VU\r')
+                        Domoticz.Debug("VU")
+
+#                 self.volume_level = str(round((int(Level)*185)/100)).rjust(3,'0')
+#                 self.PioneerConn.Send(Message=self.volume_level+'VL\r', Delay=0)
+
             elif (action == "Off"):
                 self.PioneerConn.Send(Message='MO\r', Delay=0)
             Domoticz.Debug('Level:'+str(Level))
