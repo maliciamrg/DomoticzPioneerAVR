@@ -183,9 +183,9 @@ class BasePlugin:
                 self.PioneerConn.Send(Message='MF\r', Delay=0)
             elif (action == "Set"):
             #de 0-80% de 000 a 161
-                level = str(round((int(str(lodetail))*161)/80))  #Level en %, 80% ou plus => max soit 161
+                level = str(round((int(str(Level))*161)/80))  #Level en %, 80% ou plus => max soit 161
                 delta = level - int(str(self.volume_level))
-                Domoticz.Debug('lodetail:'+str(lodetail))
+                Domoticz.Debug('lodetail:'+str(Level))
                 Domoticz.Debug('level:'+str(level))
                 Domoticz.Debug("delta: "+str(delta))
                 for i in range(0, abs(delta), self.VOLUMESTEP):
