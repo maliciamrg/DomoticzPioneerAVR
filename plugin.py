@@ -126,7 +126,7 @@ class BasePlugin:
             else: #PWR1
                 self.power_on = False
         elif loaction == 'VOL': #VOLUME
-            self.volume_level = str(round((int(str(lodetail))*100)/161))
+            self.volume_level = str(round((int(str(lodetail))-1)/self.VOLUMESTEP))
             Domoticz.Debug('voldebug=> lodetail:'+str(lodetail))
             Domoticz.Debug('voldebug=> self.volume_level:'+str(self.volume_level))
         elif loaction == 'MUT': #MUTE
@@ -183,10 +183,8 @@ class BasePlugin:
                 self.PioneerConn.Send(Message='MF\r', Delay=0)
             elif (action == "Set"):
             #de 0-80% de 000 a 161
-                level = int(round((int(str(Level))*161)/80))  #Level en %, 80% ou plus => max soit 161
-                delta = level - int(str(self.volume_level))
+                delta = Level - int(str(self.volume_level))
                 Domoticz.Debug('voldebug=> Level:'+str(Level))
-                Domoticz.Debug('voldebug=> level:'+str(level))
                 Domoticz.Debug("voldebug=> delta: "+str(delta))
                 for i in range(0, abs(delta), self.VOLUMESTEP):
                     if delta < 0:
@@ -198,7 +196,7 @@ class BasePlugin:
                         self.PioneerConn.Send(Message='VU\r')
                         Domoticz.Debug("VU")
 
-                self.volume_level = str(round(int(level))).rjust(3,'0')
+                self.volume_level = str(round(int(Level))).rjust(3,'0')
                 Domoticz.Debug('voldebug=> self.volume_level:'+str(self.volume_level))
 #                 self.PioneerConn.Send(Message=self.volume_level+'VL\r', Delay=0)
 
