@@ -185,7 +185,7 @@ class BasePlugin:
             #de 0-80% de 000 a 161
                 level = int(round((int(str(Level))*161)/80))  #Level en %, 80% ou plus => max soit 161
                 delta = level - int(str(self.volume_level))
-                Domoticz.Debug('voldebug=> lodetail:'+str(lodetail))
+                Domoticz.Debug('voldebug=> Level:'+str(Level))
                 Domoticz.Debug('voldebug=> level:'+str(level))
                 Domoticz.Debug("voldebug=> delta: "+str(delta))
                 for i in range(0, abs(delta), self.VOLUMESTEP):
