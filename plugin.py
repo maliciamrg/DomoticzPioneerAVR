@@ -39,7 +39,7 @@ class BasePlugin:
     listening_mode = None
     playing_mode = None
     display_text = None
-    InputIdx = ("01","02","03","04","05","06","15","17","19","25","38")
+    InputIdx = ("01","02","03","04","05","06","15","17","48","25","38")
 
     def __init__(self):
         #self.var = 123

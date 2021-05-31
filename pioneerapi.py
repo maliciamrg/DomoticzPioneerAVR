@@ -29,7 +29,8 @@ INPUT_MODES= {
     '40' : 'SiriusXM',
     '41' : 'PANDORA',
     '44' : 'MEDIA SERVER',
-    '45' : 'FAVORITES'
+    '45' : 'FAVORITES',
+	'48' : 'HDMI/MHL'
 }
 
 LISTENING_MODES = {
