@@ -181,7 +181,7 @@ class BasePlugin:
                 self.PioneerConn.Send(Message='MF\r', Delay=0)
             elif (action == "Set"):
                 level = int(str(Level))
-                delta = level - self.volume_level
+                delta = level - int(str(self.volume_level))
                 Domoticz.Debug("delta: "+str(delta))
                 for i in range(0, abs(delta), self.VOLUMESTEP):
                     if delta < 0:
@@ -193,7 +193,7 @@ class BasePlugin:
                         self.PioneerConn.Send(Message='VU\r')
                         Domoticz.Debug("VU")
 
-#                 self.volume_level = str(round((int(Level)*185)/100)).rjust(3,'0')
+                self.volume_level = str(round((int(Level)*185)/100)).rjust(3,'0')
 #                 self.PioneerConn.Send(Message=self.volume_level+'VL\r', Delay=0)
 
             elif (action == "Off"):
