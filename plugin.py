@@ -186,7 +186,7 @@ class BasePlugin:
                 delta = Level - int(str(self.volume_level))
                 Domoticz.Debug('voldebug=> Level:'+str(Level))
                 Domoticz.Debug("voldebug=> delta: "+str(delta))
-                for i in range(0, abs(delta), self.VOLUMESTEP):
+                for i in range(0, abs(delta), 1):
                     if delta < 0:
 
                         self.PioneerConn.Send(Message='VD\r')
