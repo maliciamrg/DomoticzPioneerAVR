@@ -185,11 +185,11 @@ class BasePlugin:
                 Domoticz.Debug("delta: "+str(delta))
                 for i in range(0, abs(delta), self.VOLUMESTEP):
                     if delta < 0:
-                        self.volume_level = str(round((int(int(str(self.volume_level))-self.VOLUMESTEP)*185)/100)).rjust(3,'0')
+
                         self.PioneerConn.Send(Message='VD\r')
                         Domoticz.Debug("VD")
                     elif delta > 0:
-                        self.volume_level str(round((int(int(str(self.volume_level))+self.VOLUMESTEP)*185)/100)).rjust(3,'0')
+
                         self.PioneerConn.Send(Message='VU\r')
                         Domoticz.Debug("VU")
 
